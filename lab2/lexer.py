@@ -127,11 +127,14 @@ class Lexer:
         return tokens
 
 
-def parse_tokens(code):
+def parse_tokens(code="", size=32):
     """Tokenize a string (creates temp file)"""
     import os
     import tempfile
 
+    if code == "":
+        with open("test_program.txt") as f:
+            code = f.read(1000000)
     # Write to temp file
     with tempfile.NamedTemporaryFile(mode="w", suffix=".c", delete=False) as f:
         f.write(code)
@@ -139,7 +142,7 @@ def parse_tokens(code):
 
     try:
         # Setup double buffer
-        buf = BufferManager(32)
+        buf = BufferManager(size)
 
         # Start reader thread
         t = threading.Thread(target=reader, args=(fname, buf))
@@ -172,15 +175,20 @@ if __name__ == "__main__":
 
         return 0;
     }"""
+    print(f"Reading 1,000,000 chars from test_program.txt with buffer_size 4096")
+    print()
+    print(f"Tokens: {parse_tokens(size=4096)[:100]}")
+    print()
+
     print(f"Input: {code}")
-    print(f"Tokens: {parse_tokens(code)}")
+    print(f"Tokens: {parse_tokens(code[:100])}")
     print()
 
     code = "int add(int a, int b) { return a + b; }"
     print(f"Input: {code}")
-    print(f"Tokens: {parse_tokens(code)}")
+    print(f"Tokens: {parse_tokens(code[:100])}")
     print()
 
     code = "if (x > 10) { x = x + 10; return 0; }"
     print(f"Input: {code}")
-    print(f"Tokens: {parse_tokens(code)}")
+    print(f"Tokens: {parse_tokens(code[:100])}")

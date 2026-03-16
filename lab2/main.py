@@ -76,8 +76,6 @@ def main():
     if time_single > 0:
         improvement = ((time_single - time_double) / time_single) * 100
         print(f"- Performance improvement: {improvement:.1f}%")
-        print("\nNote: Python's GIL causes threading overhead.")
-        print("In C/C++, double buffering typically shows 30-40% improvement.")
 
     print(f"\nCharacters processed: {chars_double}")
     print("EOF reached successfully.")
