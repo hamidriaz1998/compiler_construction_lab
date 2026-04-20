@@ -13,12 +13,11 @@ REAL       {DIGIT}+"."{DIGIT}+
 
 %%
 
-[ \t\r]+           ;
 \n                 ;
 
 "{"[^}]*"}"        ;
 
-":="               { printf("ASSIGN\n"); }
+":="               { printf("ASSIGNOP\n"); }
 ".."               { printf("DOTDOT\n"); }
 "<="               { printf("LE\n"); }
 ">="               { printf("GE\n"); }
@@ -80,4 +79,3 @@ int main() {
 int yywrap() {
     return 1;
 }
-
