@@ -1,0 +1,8 @@
+# Invalid type expressions
+array [ 1 .. 10 ] of array => False
+integer real => False
+array integer => False
+[ integer ] => False
+array [ 1 .. 10 ] of => False
+array of integer => False
+integer array => False

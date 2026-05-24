@@ -1,0 +1,7 @@
+# Valid type expressions
+integer
+real
+array [ 1 .. 10 ] of integer
+array [ 5 .. 20 ] of real
+array [ 0 .. 100 ] of real
+array [ 1 .. 5 ] of integer
